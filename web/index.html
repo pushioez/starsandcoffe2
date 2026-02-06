@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>☕ Coffee Mini App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+
+<div id="app">
+
+  <!-- MAIN PAGE -->
+  <section id="page-main" class="page active">
+    <div class="page-header">
+      <h2>Меню</h2>
+      <div class="header-decoration">☕</div>
+    </div>
+    <div class="welcome-banner">
+      <div class="banner-content">
+        <span class="banner-icon">🍓</span>
+        <span class="banner-text">Свежие ингредиенты каждый день</span>
+      </div>
+    </div>
+    <div class="search-wrapper">
+      <input type="text" id="search-input" class="search-input" placeholder="Поиск по названию..." autocomplete="off">
+      <span class="search-icon">🔍</span>
+    </div>
+    <div id="product-list" class="products"></div>
+    <div id="search-no-results" class="search-no-results" style="display: none;">
+      <p>Ничего не найдено</p>
+      <p class="empty-hint">Попробуйте другое название</p>
+    </div>
+  </section>
+
+  <!-- CART PAGE -->
+  <section id="page-cart" class="page">
+    <div class="page-header">
+      <h2>Корзина</h2>
+      <div class="header-decoration">🛒</div>
+    </div>
+    <div id="cart-list"></div>
+    <div id="cart-total" class="cart-total" style="display: none;">
+      <span class="cart-total-label">Итого:</span>
+      <span class="cart-total-price" id="cart-total-price">0 ⭐</span>
+    </div>
+    <button id="pay-cart-button" class="pay-cart-button primary" style="display: none;">
+      <span>Оплатить корзину</span>
+      <span class="button-icon">💳</span>
+    </button>
+    <div id="cart-empty" class="cart-empty" style="display: none;">
+      <p>Ваша корзина пуста</p>
+      <p class="empty-hint">Добавьте товары из меню</p>
+    </div>
+  </section>
+
+  <!-- PAY PAGE -->
+  <section id="page-pay" class="page">
+    <div class="page-header">
+      <h2>Оплата</h2>
+      <div class="header-decoration">💳</div>
+    </div>
+    <div class="payment-info">
+      <div class="info-card">
+        <span class="info-icon">🔒</span>
+        <span class="info-text">Безопасная оплата через Telegram Stars</span>
+      </div>
+    </div>
+    <div id="pay-items" class="pay-items"></div>
+    <div id="pay-total" class="pay-total">
+      <div class="pay-total-label">Итого к оплате</div>
+      <div class="pay-total-amount" id="pay-total-amount">0 ⭐</div>
+    </div>
+    <div class="pay-button-container">
+      <button id="pay-button" class="pay-button primary">
+        <span>Оплатить</span>
+        <span id="pay-button-stars">0</span>
+        <span>⭐</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- QR PAGE -->
+  <section id="page-qr" class="page">
+    <div class="qr-container">
+      <div class="success-icon">✅</div>
+      <h2 class="qr-title">Оплата успешна!</h2>
+      <div class="qr-image-wrapper">
+        <img id="qr-img" alt="QR код заказа" />
+      </div>
+      <p class="qr-message">Покажите QR-код бариста для получения заказа</p>
+      <div class="qr-hint">
+        <span class="hint-icon">💡</span>
+        <span class="hint-text">QR-код одноразовый</span>
+      </div>
+      <button class="back-home-button primary">
+        <span>На главную</span>
+        <span class="button-icon">🏠</span>
+      </button>
+    </div>
+  </section>
+
+</div>
+
+<!-- TAB BAR -->
+<div class="tab-bar">
+  <div class="tab-item active" data-page="page-main">
+    <div class="tab-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+        <polyline points="9 22 9 12 15 12 15 22"/>
+      </svg>
+    </div>
+    <div class="tab-label">Главная</div>
+  </div>
+  <div class="tab-item" data-page="page-cart">
+    <div class="tab-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="9" cy="21" r="1"/>
+        <circle cx="20" cy="21" r="1"/>
+        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+      </svg>
+    </div>
+    <div class="tab-label">Корзина</div>
+    <span id="cart-badge" class="cart-badge" style="display: none;"></span>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
