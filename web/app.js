@@ -7,73 +7,58 @@ tg.setHeaderColor("#000000");
 tg.setBackgroundColor("#000000");
 
 /* ===== CONFIG ===== */
-const RATE = 0.02; // Fixed conversion rate
+const RATE = 1.84; // Fixed conversion rate
 
-/* ===== PRODUCTS ===== */
+/* ===== CATEGORIES ===== */
+const CATEGORIES = [
+  { id: "all", title: "Всё меню" },
+  { id: "desserts", title: "Десерты" },
+  { id: "tea_chocolate", title: "Чай и шоколад" },
+  { id: "frappe", title: "Фраппе" },
+  { id: "classic_coffee", title: "Классический кофе" },
+  { id: "bakery", title: "Выпечка" },
+  { id: "combo", title: "Комбо" }
+];
+
+/* ===== PRODUCTS (by category) ===== */
+function mk(id, name, priceRub, img, desc, category) {
+  return { id, name, desc: desc || "", stars: Math.round(priceRub * RATE), img, category };
+}
+
 const PRODUCTS = [
-  {
-    id: "latte_lemon",
-    name: "Латте Лимонный Курд с Шоколадом",
-    desc: "Нежный и сливочный напиток на основе...",
-    stars: Math.round(425 * RATE),
-    img: "latte_lemon.png"
-  },
-  {
-    id: "chicory_milk",
-    name: "Цикорий Молочный",
-    desc: "Нежный горячий напиток...",
-    stars: Math.round(335 * RATE),
-    img: "chicory_milk.png"
-  },
-  {
-    id: "chicory_caramel",
-    name: "Цикорий Сливочная Карамель",
-    desc: "Сливочный горячий напиток...",
-    stars: Math.round(370 * RATE),
-    img: "chicory_caramel.png"
-  },
-  {
-    id: "belgian_waffle",
-    name: "Бельгийская вафля",
-    desc: "Нежное лакомство...",
-    stars: Math.round(290 * RATE),
-    img: "belgian_waffle.png"
-  },
-  {
-    id: "pretzel",
-    name: "Брецель с солёным маслом",
-    desc: "Только натуральные ингредиенты...",
-    stars: Math.round(420 * RATE),
-    img: "pretzel.png"
-  },
-  {
-    id: "croissant_almond",
-    name: "Круассан Миндальный",
-    desc: "Классический круассан...",
-    stars: Math.round(320 * RATE),
-    img: "croissant_almond.png"
-  },
-  {
-    id: "hot_chocolate",
-    name: "Горячий шоколад",
-    desc: "Изысканный вкус...",
-    stars: Math.round(385 * RATE),
-    img: "hot_chocolate.png"
-  },
-  {
-    id: "matcha_latte",
-    name: "Маття Чай Латте",
-    desc: "Фирменный напиток...",
-    stars: Math.round(395 * RATE),
-    img: "matcha_latte.png"
-  },
-  {
-    id: "combo_breakfast",
-    name: "Комбо завтрак",
-    desc: "Начните свой день...",
-    stars: Math.round(730 * RATE),
-    img: "combo_breakfast.png"
-  }
+  // Desserts
+  mk("brownie_pecan_caramel", "Брауни с пеканом и карамелью", 380, "brownie_pecan_caramel.png", "100 г", "desserts"),
+  mk("carrot_cake", "Морковный торт", 395, "carrot_cake.png", "115 г", "desserts"),
+  mk("bouchee_cinnamon_chocolate", "Буше с корицей и шоколадом", 380, "bouchee_cinnamon_chocolate.png", "110 г", "desserts"),
+  mk("cheesecake_raspberry", "Чизкейк Малиновый", 395, "cheesecake_raspberry.png", "145 г", "desserts"),
+  // Tea and Chocolate
+  mk("hot_chocolate", "Горячий шоколад", 385, "hot_chocolate.png", "350 мл • Охлаждённый", "tea_chocolate"),
+  mk("green_tea_jasmine_mango", "Зелёный чай Жасмин Манго", 345, "green_tea_jasmine_mango.png", "350 мл", "tea_chocolate"),
+  mk("matcha_latte", "Маття Чай Латте", 395, "matcha_latte.png", "350 мл • Охлаждённый", "tea_chocolate"),
+  mk("mint_tea_raspberry_passion_fruit", "Мятный чай Малина Маракуйя", 345, "mint_tea_raspberry_passion_fruit.png", "350 мл", "tea_chocolate"),
+  // Frappe
+  mk("vanilla_frappe", "Ванильный фраппе", 405, "vanilla_frappe.png", "350 мл", "frappe"),
+  mk("classic_frappe", "Классический фраппе", 415, "classic_frappe.png", "350 мл", "frappe"),
+  mk("matcha_frappe", "Маття фраппе", 415, "matcha_frappe.png", "350 мл", "frappe"),
+  mk("mocha_frappe", "Мокка фраппе", 425, "mocha_frappe.png", "350 мл", "frappe"),
+  mk("white_chocolate_mocha_frappe", "Фраппе Белый шоколад Мокка", 425, "white_chocolate_mocha_frappe.png", "350 мл", "frappe"),
+  mk("juicy_raspberry_frappe", "Малиновый фраппе", 425, "juicy_raspberry_frappe.png", "350 мл", "frappe"),
+  mk("chocolate_frappe", "Шоколадный фраппе", 405, "chocolate_frappe.png", "350 мл", "frappe"),
+  // Classic Coffee Drinks
+  mk("golden_macchiato", "Голден макиато", 420, "golden_macchiato.png", "350 мл", "classic_coffee"),
+  mk("classic_cappuccino", "Классический капучино", 380, "classic_cappuccino.png", "300 мл", "classic_coffee"),
+  mk("lungo", "Лунго", 335, "lungo.png", "150 мл", "classic_coffee"),
+  mk("mocha", "Мокка", 410, "mocha.png", "350 мл", "classic_coffee"),
+  mk("white_chocolate_mocha", "Мокка белый шоколад", 410, "white_chocolate_mocha.png", "350 мл", "classic_coffee"),
+  mk("vanilla_raf", "Ванильный раф", 435, "vanilla_raf.png", "350 мл", "classic_coffee"),
+  mk("classic_raf", "Классический раф", 425, "classic_raf.png", "350 мл", "classic_coffee"),
+  mk("flat_white", "Флэт уайт", 405, "flat_white.png", "350 мл", "classic_coffee"),
+  // Bakery
+  mk("belgian_waffle", "Бельгийская вафля", 290, "belgian_waffle.png", "Нежное лакомство", "bakery"),
+  mk("pretzel", "Брецель с солёным маслом", 420, "pretzel.png", "Только натуральные ингредиенты", "bakery"),
+  mk("croissant_almond", "Круассан Миндальный", 320, "croissant_almond.png", "Классический круассан", "bakery"),
+  // Combo
+  mk("combo_breakfast", "Комбо завтрак", 730, "combo_breakfast.png", "Начните свой день", "combo")
 ];
 
 /* ===== CART MANAGEMENT ===== */
@@ -130,6 +115,29 @@ function showNotification(message) {
   }, 2000);
 }
 
+/* ===== CATEGORY FILTER ===== */
+let currentCategory = "all";
+
+function setCategory(categoryId) {
+  currentCategory = categoryId;
+  const btns = document.querySelectorAll(".category-btn");
+  btns.forEach(btn => {
+    btn.classList.toggle("active", btn.getAttribute("data-category") === categoryId);
+  });
+  renderProducts();
+}
+
+function renderCategoryButtons() {
+  const container = document.getElementById("category-buttons");
+  if (!container) return;
+  container.innerHTML = CATEGORIES.map(cat => `
+    <button class="category-btn ${cat.id === "all" ? "active" : ""}" data-category="${cat.id}">${cat.title}</button>
+  `).join("");
+  container.querySelectorAll(".category-btn").forEach(btn => {
+    btn.addEventListener("click", () => setCategory(btn.getAttribute("data-category")));
+  });
+}
+
 /* ===== SEARCH ===== */
 function getSearchQuery() {
   const input = document.getElementById("search-input");
@@ -138,11 +146,17 @@ function getSearchQuery() {
 
 function getFilteredProducts() {
   const query = getSearchQuery();
-  if (!query) return PRODUCTS;
-  return PRODUCTS.filter(p =>
-    p.name.toLowerCase().includes(query) ||
-    (p.desc && p.desc.toLowerCase().includes(query))
-  );
+  let list = PRODUCTS;
+  if (currentCategory !== "all") {
+    list = list.filter(p => p.category === currentCategory);
+  }
+  if (query) {
+    list = list.filter(p =>
+      p.name.toLowerCase().includes(query) ||
+      (p.desc && p.desc.toLowerCase().includes(query))
+    );
+  }
+  return list;
 }
 
 function renderProducts(productsToShow) {
@@ -448,6 +462,7 @@ if (searchInput) {
 }
 
 /* ===== INITIALIZE ===== */
+renderCategoryButtons();
 renderProducts();
 updateCartBadge();
 

@@ -293,6 +293,42 @@ body::before {
   margin-top: var(--spacing-xs);
 }
 
+/* ===== CATEGORY BUTTONS ===== */
+.category-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-lg);
+}
+
+.category-btn {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: var(--radius-full);
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  border: 1px solid var(--glass-border);
+  color: var(--tg-theme-hint-color);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+}
+
+.category-btn:hover {
+  background: var(--glass-hover);
+  color: var(--tg-theme-text-color);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.category-btn.active {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.25), rgba(139, 69, 19, 0.2));
+  border-color: rgba(212, 175, 55, 0.5);
+  color: var(--coffee-cream);
+  box-shadow: 0 2px 12px rgba(212, 175, 55, 0.2);
+}
+
 /* ===== PAYMENT INFO ===== */
 .payment-info {
   margin-bottom: var(--spacing-lg);
